@@ -21,13 +21,13 @@ function! s:printRecentGitLog()
     endif
     normal! Go
     let s:startLine = line('$')
-    silent execute 'r! git log --pretty=oneline | head -' . g:git_msg_wheel_length . ' | sed "s/^/\#\# /"'
+    silent execute 'r! git log --pretty=oneline | cut -f 1 -d " " --complement | head -' . g:git_msg_wheel_length . ' | sed "s/^/\#\# /"'
     normal! gg
     let s:commitMessages = getline(s:startLine, '$')
 
     let l:i = 0
     for l:msg in s:commitMessages
-        let s:commitMessages[l:i] = substitute(l:msg, '^## \S*\s', '', '')
+        let s:commitMessages[l:i] = substitute(l:msg, '^##', '', '')
         let l:i += 1
     endfor
 
