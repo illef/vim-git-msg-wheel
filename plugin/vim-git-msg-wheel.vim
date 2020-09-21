@@ -27,7 +27,7 @@ function! s:printRecentGitLog()
 
     let l:i = 0
     for l:msg in s:commitMessages
-        let s:commitMessages[l:i] = substitute(l:msg, '^##', '', '')
+        let s:commitMessages[l:i] = substitute(l:msg, '^## ', '', '')
         let l:i += 1
     endfor
 
